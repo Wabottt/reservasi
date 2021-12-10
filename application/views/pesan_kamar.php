@@ -6,8 +6,8 @@
             <h5 class="text-center text-dark font-weight-bold mt-3 mb-2">Pesan Kamar</h5>
 			<div class="collapse show" id="collapseCardExample">
 				<div class="card-body">
+                
                 <?= form_open('pesan/pesanKamar');?>
-
                     <div class="form-group">
                         <label>Nama_karyawan</label>
                         <input type="text" class="form-control" name="nama_karyawan" value="<?=$sesi['username']?>" >
@@ -91,8 +91,8 @@
                     Reset
                     </button>
                     </div>
-
                 </form>
+                
 
 				</div>
 			</div>

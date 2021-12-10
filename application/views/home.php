@@ -213,6 +213,8 @@ data-target="#exampleModal" data-whatever="@mdo">
             <input type="text" name="telpon" class="form-control" id="recipient-name" placeholder="Nomor Telpon">
           </div>
 
+		  <input type="hidden" name="role" value="1">
+
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			<button type="submit" class="btn btn-primary">Input</button>

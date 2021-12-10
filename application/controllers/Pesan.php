@@ -16,13 +16,14 @@ class Pesan extends CI_Controller {
             'nik' => $this->input->post('nik'),
             'alamat' => $this->input->post('alamat'),
             'telpon' => $this->input->post('telpon'),   
+            'role' => $this->input->post('role'), 
         ];
 
         $this->db->insert('tamu', $data);
 
 		$data=[
 			'title' => 'Pesan Kamar',
-            'kamar'=> $this->M_Kamar->tampilData(),
+            'kamar'=> $this->M_Kamar->PilihKamar(),
             'paket'=> $this->M_Paket->tampilData(),
             'tamu'=> $this->M_Tamu->tampilData(),
             'sesi' => $this->db->get_where('user', ['id_karyawan' => $this->session->userdata('id_karyawan')] )->row_array()
@@ -34,7 +35,9 @@ class Pesan extends CI_Controller {
 
     public function pesanKamar()
 	{
+
         $data=[
+            'nama_karyawan' => $this->input->post('nama_karyawan'),
             'nama' => $this->input->post('nama'),
             'nik' => $this->input->post('nik'),
             'alamat' => $this->input->post('alamat'),
@@ -47,6 +50,21 @@ class Pesan extends CI_Controller {
             'lama' => $this->input->post('lama'),
             'request' => $this->input->post('request')
         ];
+
+        $data2=[
+            'nama' => $this->input->post('nama'),
+            'role' => 2];
+
+        $data3=[
+            'nomor_kamar' => $this->input->post('nomor_kamar'),
+            'status' => "chekout" ];
+
+        $where=[
+            'nomor_kamar' => $this->input->post('nomor_kamar'),
+        ];
+
+        $this->db->update('tamu', $data2);
+        $this->M_Kamar->update_data($where, $data3, 'kamar');
 
         $this->db->insert('data_pesanan', $data);
         redirect('home');

@@ -7,6 +7,7 @@ class M_Tamu extends CI_Model {
 
         $this->db->select('*');
         $this->db->from('tamu');
+        $this->db->where('role = 1');
         $query=$this->db->get();
         return $query->result();
     }

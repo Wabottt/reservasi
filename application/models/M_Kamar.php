@@ -13,6 +13,17 @@ class M_Kamar extends CI_Model {
         return $query->result();
     }
 
+    public function PilihKamar(){
+
+        $this->db->select('kamar.nomor_kamar, kamar.tipe, kamar.lantai, kamar.status, detail_kamar.id_kamar, 
+        detail_kamar.tipe, detail_kamar.harga, detail_kamar.fasilitas, detail_kamar.foto');
+        $this->db->from('kamar');
+        $this->db->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' );
+        $this->db->where('status = "ready" ');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
     public function detailKamar(){
 
         $query=$this->db->select('kamar.status, detail_kamar.id_kamar, detail_kamar.tipe, detail_kamar.harga, 
@@ -32,5 +43,11 @@ class M_Kamar extends CI_Model {
         ->where('status="on cleaning" ')
         ->get('kamar');
         return $query->result();
+    }
+
+    public function update_data($where, $data3, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data3);
     }
 }
