@@ -41,7 +41,7 @@
                         <td><?=$row->paket; ?></td>
                         <td><?=$row->tgl_masuk; ?></td>
                         <td><?=$row->tgl_keluar; ?></td>
-                        <td><?=$row->total_bayar; ?></td>
+                        <td><?=$row->total; ?></td>
                         <td><?=$row->nama_karyawan; ?></td>
                         <td>
                             <a href="<?=base_url('Kamar/hapus/'.$row->id_pesanan)?>" class="">Lihat</a> | 

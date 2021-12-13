@@ -42,7 +42,7 @@ class Kamar extends CI_Controller {
 		];
         
         $this->db->insert('kamar',$data);
-        redirect('kamar');
+        redirect('kamar/form');
 	}
 
     

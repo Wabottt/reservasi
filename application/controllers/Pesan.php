@@ -35,7 +35,6 @@ class Pesan extends CI_Controller {
 
     public function pesanKamar()
 	{
-
         $data=[
             'nama_karyawan' => $this->input->post('nama_karyawan'),
             'nama' => $this->input->post('nama'),
@@ -48,7 +47,9 @@ class Pesan extends CI_Controller {
             'tgl_masuk' => $this->input->post('tgl_masuk'),
             'tgl_keluar' => $this->input->post('tgl_keluar'),
             'lama' => $this->input->post('lama'),
-            'request' => $this->input->post('request')
+            'request' => $this->input->post('request'),
+            'total' => $this->input->post('total'),
+            'role_id' => 1
         ];
 
         $data2=[

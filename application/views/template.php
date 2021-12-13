@@ -11,6 +11,8 @@
 
     <title><?=$title?></title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom fonts for this template-->
     <link href="<?=base_url()?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -430,6 +432,12 @@
     <script src="<?=base_url()?>assets/js/demo/datatables-demo.js"></script>
     <script src="<?=base_url()?>assets/js/demo/chart-area-demo.js"></script>
     <script src="<?=base_url()?>assets/js/demo/chart-pie-demo.js"></script>
+    <script src="<?=base_url()?>assets/js/jQuery 3.6.0.js"></script>
+
+    <!--bootsrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>
