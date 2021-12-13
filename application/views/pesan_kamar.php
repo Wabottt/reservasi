@@ -1,4 +1,14 @@
-<!-- Content Row -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?=$title?></title>
+</head>
+<body>
+
+    <!-- Content Row -->
  <div class="row justify-content-lg-center">
 	<div class="col-lg-8">
 
@@ -10,16 +20,16 @@
                 <?= form_open('pesan/pesanKamar');?>
                     <div class="form-group">
                         <label>Nama_karyawan</label>
-                        <input type="text" class="form-control" name="nama_karyawan" value="<?=$sesi['username']?>" >
+                        <input type="text" class="form-control" name="nama_karyawan" value="<?=$sesi['username']?>" readonly  >
                     </div>
 
                     <div class="form-group">
                         <label>Nama Tamu</label>
                         <?php foreach ($tamu as $row) { ?>
-                        <input type="text" name="nama" value="<?=$row->nama?>" class="form-control" required>
-                        <input type="hidden" name="nik" value="nik" >
-                        <input type="hidden" name="alamat" value="alamat" >
-                        <input type="hidden" name="telpon" value="telpon" >
+                        <input type="text" name="nama" value="<?=$row->nama?>" class="form-control" readonly>
+                        <input type="hidden" name="nik" value="<?=$row->nik?>" >
+                        <input type="hidden" name="alamat" value="<?=$row->alamat?>" >
+                        <input type="hidden" name="telpon" value="<?=$row->telpon?>" >
                         <?php } ?>
                     </div>
 
@@ -99,3 +109,6 @@
 		</div>
 	</div>
 </div>
+
+</body>
+</html>

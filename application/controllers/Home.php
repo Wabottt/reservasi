@@ -14,8 +14,11 @@ class Home extends CI_Controller {
 	{
 		$data=[
 			'title' => 'Home',
-			'detail'=> $this->M_Kamar->detailKamar(),
-			'kamar'=> $this->M_Kamar->Kamar(),
+			'kamar'=> $this->M_Kamar->PilihKamar(),
+			'status1'=> $this->M_Kamar->status1(),
+			'status2'=> $this->M_Kamar->status2(),
+			'status3'=> $this->M_Kamar->status3(),
+			'status4'=> $this->M_Kamar->status4(),
 			'sesi' => $this->db->get_where('user', ['id_karyawan' => $this->session->userdata('id_karyawan')] )->row_array()
 		];
 		$this->template->load('template', 'home', $data);

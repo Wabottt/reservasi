@@ -21,12 +21,27 @@ data-target="#exampleModal" data-whatever="@mdo">
 
 	<div class="row mb-4">
 		<div class="col-lg-3">
-			<div class="card border-left-primary ">
-			<?php foreach ($kamar as $key) { ?>
+			<div class="card border-left-success ">
+			
 			<div class="card-body shadow py-3">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
-				<h7> On Cleaning : <?=$key->total?> </h7>
+				<?php foreach ($status1 as $key) { ?>
+				<h7><?=$key->status?> : <?=$key->total?> </h7>
+				<?php } ?>
+				</div>
+			</div>
+
+			</div>
+		</div>
+
+		<div class="col-lg-3">
+			<div class="card border-left-danger ">
+			<?php foreach ($status2 as $key) { ?>
+			<div class="card-body shadow py-3">
+				<div  class="text-center text-dark font-weight-bold">
+				<h8 class="">Status Kamar</h8><br>
+				<h7><?=$key->status?> : <?=$key->total?> </h7>
 				</div>
 			</div>
 			<?php } ?>
@@ -34,12 +49,12 @@ data-target="#exampleModal" data-whatever="@mdo">
 		</div>
 
 		<div class="col-lg-3">
-			<div class="card border-left-primary ">
-			<?php foreach ($kamar as $key) { ?>
+			<div class="card border-left-warning ">
+			<?php foreach ($status3 as $key) { ?>
 			<div class="card-body shadow py-3">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
-				<h7> On Cleaning : <?=$key->total?> </h7>
+				<h7> <?=$key->status?> : <?=$key->total?> </h7>
 				</div>
 			</div>
 			<?php } ?>
@@ -47,25 +62,12 @@ data-target="#exampleModal" data-whatever="@mdo">
 		</div>
 
 		<div class="col-lg-3">
-			<div class="card border-left-primary ">
-			<?php foreach ($kamar as $key) { ?>
+			<div class="card border-left-secondary ">
+			<?php foreach ($status4 as $key) { ?>
 			<div class="card-body shadow py-3">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
-				<h7> On Cleaning : <?=$key->total?> </h7>
-				</div>
-			</div>
-			<?php } ?>
-			</div>
-		</div>
-
-		<div class="col-lg-3">
-			<div class="card border-left-primary ">
-			<?php foreach ($kamar as $key) { ?>
-			<div class="card-body shadow py-3">
-				<div  class="text-center text-dark font-weight-bold">
-				<h8 class="">Status Kamar</h8><br>
-				<h7> On Cleaning : <?=$key->total?> </h7>
+				<h7><?=$key->status?> : <?=$key->total?> </h7>
 				</div>
 			</div>
 			<?php } ?>
@@ -102,7 +104,7 @@ data-target="#exampleModal" data-whatever="@mdo">
 			<div class="card-body">
 
 				<div class="row justify-content-lg-center">
-					<?php foreach ($detail as $row) { ?>
+					<?php foreach ($kamar as $row) { ?>
 						<div class="col-md-6 mb-2">
 							<div class="card shadow">
 								<img class="" style="filter:brightness(50%)" 

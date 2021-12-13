@@ -67,6 +67,7 @@ class Pesan extends CI_Controller {
         $this->M_Kamar->update_data($where, $data3, 'kamar');
 
         $this->db->insert('data_pesanan', $data);
+        $this->db->insert('transaksi', $data);
         redirect('home');
 	}
     
