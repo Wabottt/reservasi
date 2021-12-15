@@ -12,10 +12,10 @@ class M_Tamu extends CI_Model {
         return $query->result();
     }
 
-    public function chekout($chekout_tamu)
+    public function chekout($data2)
     {
         // query hapus
-        $this->db->where($chekout_tamu);
+        $this->db->where($data2);
         $this->db->delete('tamu');
     }
 }

@@ -43,7 +43,6 @@ class M_Kamar extends CI_Model {
         // ->from('kamar')
         ->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' )
         ->where('status = "chekout"')
-        ->group_by('tipe')
         ->get('kamar');
         return $query->result();
     }
@@ -71,7 +70,7 @@ class M_Kamar extends CI_Model {
     public function update_data($where, $data3, $table)
     {
         $this->db->where($where);
-        $this->db->update($table, $data3);
+        $this->db->update_batch($table, $data3);
     }
 
     public function chekout($where, $data, $table)

@@ -20,17 +20,13 @@ class Data_pesanan extends CI_Controller {
 		$this->template->load('template', 'tamu/daftar_tamu', $data);
 	}
 
-    public function Chekout($id_pesanan, $nama, $nomor_kamar)
+    public function Chekout($id_pesanan, $nomor_kamar)
 	{
 
 
 
 		$chekout=[
 			'id_pesanan' => $id_pesanan
-		];
-
-        $chekout_tamu=[
-			'nama' => $nama
 		];
 
         $data=[
@@ -44,7 +40,6 @@ class Data_pesanan extends CI_Controller {
 
         $this->M_Kamar->chekout($where, $data, 'kamar');
         $this->M_Pesan->chekout($chekout);
-        $this->M_Tamu->chekout($chekout_tamu);
 
         redirect('home');
         

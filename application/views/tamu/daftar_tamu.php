@@ -45,7 +45,7 @@
                         <td><?=$row->nama_karyawan; ?></td>
                         <td>
                             <a href="<?=base_url('Kamar/hapus/'.$row->id_pesanan)?>" class="">Lihat</a> | 
-                            <a href="<?=base_url('Data_pesanan/chekout/'.$row->id_pesanan . '/'. $row->nama . '/' . $row->nomor_kamar)?>" class="btn btn-success btn-sm">Chekout</a> 
+                            <a href="<?=base_url('Data_pesanan/chekout/'.$row->id_pesanan . '/'. $row->nomor_kamar)?>" class="btn btn-success btn-sm">Chekout</a> 
                         </td>
                     </tr>
 
