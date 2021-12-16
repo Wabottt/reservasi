@@ -13,15 +13,11 @@
         <i class="fa fa-undo"></i> Back
     </a>
 </div>
-<!-- Page Heading -->
-
-    <!-- <a href="<?=base_url('kamar/form')?>" class="btn btn-primary btn-sm pull-right mt-2 mb-4">
-    <i class="fa fa-user-plus"></i>Tambah Kamar</a> -->
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h5 class="m-0 font-weight-bold text-primary">Data Kamar</h5>
+        <h5 class="m-0 font-weight-bold text-primary">Kamar Chek out</h5>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -30,7 +26,6 @@
                     <tr class="text-center font-weight-bold text-dark ">
                         <th>Nomor_Kamar</th>
                         <th>Tipe</th>
-                        <th>Harga</th>
                         <th>Lantai</th>
                         <th>Status</th>
                         <th>Opsi</th>
@@ -43,15 +38,16 @@
                     <tr class="text-center">
                         <td><?=$row->nomor_kamar; ?></td>
                         <td><?=$row->tipe; ?></td>
-                        <td><?=$row->harga; ?></td>
                         <td><?=$row->lantai; ?></td>
                         <td><?=$row->status; ?></td>
                         <td>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-danger btn-sm">Maintenence</button>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#ready"  class="btn btn-success btn-sm">Ready</button> |
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-danger btn-sm">Maintenence</button>
+                            
                         </td>
                     </tr>
 
-                    <!-- Modal -->
+                                        <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -65,6 +61,25 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
                             <a href="<?=base_url('Kamar/ubahinfo/'.$row->nomor_kamar)?>" class="btn btn-danger btn-sm">Maintenence</a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
+                                        <!-- Modal -->
+                    <div class="modal fade" id="ready" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-weight-bold text-center text-dark" id="exampleModalLabel">Siapkan Kamar ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h6 class="text center text-dark">Pastikan Kamar Telah Selesai dibersihkan</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+                            <a href="<?=base_url('Kamar/Upkamar/'.$row->nomor_kamar)?>" class="btn btn-primary btn-sm">Ubah</a>
                         </div>
                         </div>
                     </div>

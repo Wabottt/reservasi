@@ -22,16 +22,13 @@ class Data_pesanan extends CI_Controller {
 
     public function Chekout($id_pesanan, $nomor_kamar)
 	{
-
-
-
 		$chekout=[
 			'id_pesanan' => $id_pesanan
 		];
 
         $data=[
             'nomor_kamar' => $nomor_kamar,
-            'status' => "on cleaning"
+            'status' => "chekout"
         ];
 
         $where=[
@@ -41,7 +38,7 @@ class Data_pesanan extends CI_Controller {
         $this->M_Kamar->chekout($where, $data, 'kamar');
         $this->M_Pesan->chekout($chekout);
 
-        redirect('home');
+        redirect('Data_Pesanan');
         
 	}
 

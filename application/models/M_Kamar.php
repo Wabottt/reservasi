@@ -25,9 +25,20 @@ class M_Kamar extends CI_Model {
         return $query->result();
     }
 
+    public function Kamar(){
+
+        $this->db->select('kamar.nomor_kamar, kamar.lantai, kamar.status, detail_kamar.id_kamar, 
+        detail_kamar.tipe, detail_kamar.harga, detail_kamar.fasilitas, detail_kamar.foto');
+        $this->db->from('kamar');
+        $this->db->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' );
+        $this->db->where('status = "ready" ');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
     public function status1(){
 
-        $this->db->select('kamar.status, kamar.keterangan, detail_kamar.id_kamar, detail_kamar.tipe, detail_kamar.harga, 
+        $this->db->select('kamar.status, kamar.nomor_kamar, kamar.lantai, kamar.keterangan, detail_kamar.id_kamar, detail_kamar.tipe, detail_kamar.harga, 
         detail_kamar.fasilitas, detail_kamar.foto, COUNT(*) as total');
         $this->db->from('kamar');
         $this->db->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' );
@@ -40,9 +51,8 @@ class M_Kamar extends CI_Model {
 
         $query=$this->db->select('kamar.status, kamar.keterangan, detail_kamar.id_kamar, detail_kamar.tipe, detail_kamar.harga, 
         detail_kamar.fasilitas, detail_kamar.foto, COUNT(*) as total')
-        // ->from('kamar')
         ->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' )
-        ->where('status = "chekout"')
+        ->where('status = "chekin"')
         ->get('kamar');
         return $query->result();
     }
@@ -52,7 +62,7 @@ class M_Kamar extends CI_Model {
         $query=$this->db->select('kamar.status, kamar.keterangan, detail_kamar.id_kamar, detail_kamar.tipe, detail_kamar.harga, 
         detail_kamar.fasilitas, detail_kamar.foto, COUNT(*) as total')
         ->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' )
-        ->where('status="on cleaning" ')
+        ->where('status="chekout" ')
         ->get('kamar');
         return $query->result();
     }
@@ -62,7 +72,7 @@ class M_Kamar extends CI_Model {
         $query=$this->db->select('kamar.status, kamar.keterangan, detail_kamar.id_kamar, detail_kamar.tipe, detail_kamar.harga, 
         detail_kamar.fasilitas, detail_kamar.foto, COUNT(*) as total')
         ->join('detail_kamar', 'detail_kamar.tipe=kamar.tipe' )
-        ->where('status= "maintenance" ')
+        ->where('status= "maintenence" ')
         ->get('kamar');
         return $query->result();
     }
@@ -77,5 +87,10 @@ class M_Kamar extends CI_Model {
     {
         $this->db->where($where);
         $this->db->update($table, $data);
+    }
+
+    public function editData($where,$table)
+    {
+        return $this->db->get_where($table,$where);
     }
 }

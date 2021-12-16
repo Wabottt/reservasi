@@ -102,7 +102,7 @@ class Auth extends CI_Controller {
                 'role_id' => '1' );
 
                 $this->db->insert('user',$data);
-                redirect('home');
+                redirect('user');
         }
     }
 

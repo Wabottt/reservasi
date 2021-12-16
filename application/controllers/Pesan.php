@@ -20,17 +20,23 @@ class Pesan extends CI_Controller {
         ];
 
         $this->db->insert('tamu', $data);
+        redirect('pesan/lanjut_pesan');
 
+	}
+
+    public function lanjut_pesan(){
+        
 		$data=[
 			'title' => 'Pesan Kamar',
-            'kamar'=> $this->M_Kamar->PilihKamar(),
+            'kamar'=> $this->M_Kamar->Kamar(),
             'paket'=> $this->M_Paket->tampilData(),
             'tamu'=> $this->M_Tamu->tampilData(),
             'sesi' => $this->db->get_where('user', ['id_karyawan' => $this->session->userdata('id_karyawan')] )->row_array()
 		];
         
 		$this->template->load('template', 'pesan_kamar', $data);
-	}
+
+    }
 
 
     public function pesanKamar() {
@@ -77,7 +83,7 @@ class Pesan extends CI_Controller {
             }
             
             $nomor_kamar2 = $_POST['nomor_kamar'];
-            $chekout = $_POST['chekout'];
+            $chekout = $_POST['chekin'];
             $data3=array ();
             foreach($nomor_kamar2 as $dkam){
                 array_push($data3, array(
@@ -91,7 +97,7 @@ class Pesan extends CI_Controller {
         $this->db->insert_batch('data_pesanan', $data);
         $this->db->insert_batch('transaksi', $data);
         $this->db->delete('tamu', $data2);
-        redirect('home');
+        redirect('data_pesanan');
 	}
     
 }

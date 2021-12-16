@@ -7,6 +7,11 @@
     <title><?=$title?></title>
 </head>
 <body>
+<div class="mb-3">
+    <a href="<?=base_url('kamar')?>" class="btn btn-warning btn-sm">
+        <i class="fa fa-undo"></i> Back
+    </a>
+</div>
     <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">

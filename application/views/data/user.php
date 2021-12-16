@@ -7,8 +7,12 @@
     <title><?=$title?></title>
 </head>
 <body>
-
-<!-- Page Heading -->
+<div class="mb-3">
+    <a href="<?=base_url('kamar')?>" class="btn btn-warning btn-sm">
+        <i class="fa fa-undo"></i> Back
+    </a>
+</div>
+Page Heading
 
     <a href="<?=base_url('auth/register')?>" class="btn btn-primary btn-sm pull-right mt-2 mb-4">
     <i class="fa fa-user-plus"></i> Register User</a>
