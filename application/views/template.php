@@ -76,8 +76,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Informasi Kamar:</h6>
                         <a class="collapse-item" href="<?=base_url('Kamar/status1')?>">Ready</a>
-                        <a class="collapse-item" href="<?=base_url('Kamar/status2')?>">Chek in</a>
-						<a class="collapse-item" href="<?=base_url('Kamar/status3')?>">Chek out</a>
+                        <a class="collapse-item" href="<?=base_url('Kamar/status2')?>">Check in</a>
+						<a class="collapse-item" href="<?=base_url('Kamar/status3')?>">Check out</a>
 						<a class="collapse-item" href="<?=base_url('Kamar/status4')?>">Maintenence</a>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                         <h6 class="collapse-header">Informasi Tamu:</h6>
                         <a class="collapse-item" href="<?=base_url('Data_pesanan')?>">Daftar Tamu</a>
                         <a class="collapse-item" href="utilities-border.html">Request Tamu</a>
-                        <a class="collapse-item" href="utilities-animation.html">Data Transaksi</a>
+                        <a class="collapse-item" href="<?=base_url('laporan')?>">Data Transaksi</a>
                     </div>
                 </div>
             </li>
@@ -122,10 +122,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data HRD:</h6>
                         <a class="collapse-item" href="<?=base_url('User')?>">Data Login Karyawan</a>
-                        <a class="collapse-item" href="">Rekap Data Bulanan</a>
+                        <a class="collapse-item" href="<?=base_url('rekap_data')?>">Rekap Data Bulanan</a>
                         <div class="collapse-divider"></div>
-                        <!-- <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="">404 Page</a> -->
                     </div>
                 </div>
             </li>
@@ -304,6 +302,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script>
+
+    $(document).ready(function() {
+        $("#data1").DataTable(
+        )
+    });
+</script>
 
 </body>
 </html>

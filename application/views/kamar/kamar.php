@@ -8,11 +8,6 @@
 </head>
 <body>
 
-<div class="mb-3">
-    <a href="<?=base_url('kamar')?>" class="btn btn-warning btn-sm">
-        <i class="fa fa-undo"></i> Back
-    </a>
-</div>
 <!-- Page Heading -->
 
     <!-- <a href="<?=base_url('kamar/form')?>" class="btn btn-primary btn-sm pull-right mt-2 mb-4">
@@ -47,29 +42,9 @@
                         <td><?=$row->lantai; ?></td>
                         <td><?=$row->status; ?></td>
                         <td>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="btn btn-danger btn-sm">Maintenence</button>
+                        <a href="<?=base_url('Kamar/ubahinfo/'.$row->nomor_kamar)?>" class="btn btn-danger btn-sm">Maintenence</a>
                         </td>
                     </tr>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold text-center text-dark" id="exampleModalLabel">Maintenence Kamar ?</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <h6 class="text center text-dark">Pastikan Mengisi Keterangan Kamar</h6>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
-                            <a href="<?=base_url('Kamar/ubahinfo/'.$row->nomor_kamar)?>" class="btn btn-danger btn-sm">Maintenence</a>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
                 <?php } ?>
                 </tbody>
 

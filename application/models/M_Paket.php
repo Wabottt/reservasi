@@ -10,4 +10,12 @@ class M_Paket extends CI_Model {
         $query=$this->db->get();
         return $query->result();
     }
+    public function detail(){
+
+        $this->db->select('*');
+        $this->db->from('detail_kamar');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
 }

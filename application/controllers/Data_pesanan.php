@@ -41,5 +41,4 @@ class Data_pesanan extends CI_Controller {
         redirect('Data_Pesanan');
         
 	}
-
 }

@@ -19,7 +19,7 @@ data-target="#exampleModal" data-whatever="@mdo">
 </button>
 
 
-	<div class="row mb-4">
+	<div class="row mb-3">
 		<div class="col-lg-3">
 			<div class="card border-left-primary ">
 			
@@ -27,7 +27,7 @@ data-target="#exampleModal" data-whatever="@mdo">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
 				<?php foreach ($status1 as $key) { ?>
-				<h7> <h7 class="text-primary"><?=$key->status?></h7>  : <?=$key->total?> </h7>
+				<h7> <h7 class="text-primary">Ready</h7>  : <?=$key->total?> </h7>
 				<br>
 				<a href="<?=base_url('kamar/status1')?>">Lihat   <i class="fas fa-arrow-right"></i></a>
 				<?php } ?>
@@ -43,7 +43,7 @@ data-target="#exampleModal" data-whatever="@mdo">
 			<div class="card-body shadow py-3">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
-				<h7> <h7 class="text-success"><?=$key->status?></h7>  : <?=$key->total?> </h7>
+				<h7> <h7 class="text-success">Check in</h7>  : <?=$key->total?> </h7>
 				<br>
 				<a href="<?=base_url('kamar/status2')?>">Lihat   <i class="fas fa-arrow-right"></i></a>
 				</div>
@@ -58,7 +58,7 @@ data-target="#exampleModal" data-whatever="@mdo">
 			<div class="card-body shadow py-3">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
-				<h7> <h7 class="text-secondary"><?=$key->status?></h7> : <?=$key->total?> </h7>
+				<h7> <h7 class="text-secondary">Check out</h7> : <?=$key->total?> </h7>
 				<br>
 				<a href="<?=base_url('kamar/status3')?>">Lihat   <i class="fas fa-arrow-right"></i></a>
 				</div>
@@ -73,7 +73,7 @@ data-target="#exampleModal" data-whatever="@mdo">
 			<div class="card-body shadow py-3">
 				<div  class="text-center text-dark font-weight-bold">
 				<h8 class="">Status Kamar</h8><br>
-				<h7 class="mb-2"> <h7 class="text-danger"><?=$key->status?></h7> : <?=$key->total?> </h7>
+				<h7 class="mb-2"> <h7 class="text-danger">Maintenence</h7> : <?=$key->total?> </h7>
 				<br>
 				<a href="<?=base_url('kamar/status4')?>">Lihat   <i class="fas fa-arrow-right"></i></a>
 				</div>
@@ -86,48 +86,29 @@ data-target="#exampleModal" data-whatever="@mdo">
 
 <!-- Content Row -->
 
- <div class="row">
+ <div class="row justify-content-lg-center">
 	<!-- Area Chart -->
-	<div class="col-xl-12">
-		<div class="card shadow mb-4">
-			<!-- Card Header - Dropdown -->
-			<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-				<h6 class="m-0 font-weight-bold text-primary">Kamar Tersedia</h6>
-				<div class="dropdown no-arrow">
-					<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-					</a>
-					<div class="dropdown-menu dropdown-menu-right shadow animated--fade-out"
-						aria-labelledby="dropdownMenuLink">
-						<div class="dropdown-header">Dropdown Header:</div>
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div>
-				</div>
-			</div>
+	<div class="col-xl-9">
+		<div class="card shadow mb-3">
 			<!-- Card Body -->
 			<div class="card-body">
 
-				<div class="row justify-content-lg-center">
+				<div class="row">
 					<?php foreach ($kamar as $row) { ?>
 						<div class="col-md-6 mb-2">
 							<div class="card shadow">
 								<img class="" style="filter:brightness(50%)" 
 								src="<?=$row->foto?>">
 								<div class="card-img-overlay">
-									<div style="top: 40%; padding: 20%;">
-									<h3 class="card-title text-center text-light">
-									Tipe</h3>
-									<h1 class="card-text text-center text-light">
-									<?=$row->tipe?></h1>
+									<div style="top: 40%; padding: 15%;">
+									<h4 class="card-title text-center text-light">Tipe</h4>
+									<h2 class="card-text text-center text-light">
+									<?=$row->tipe?></h2>
 									</div>
 								</div>    
 							
 								<div class="card-body font-weight-bold text-dark">
-									<h5> Kamar Tersedia : <?=$row->total?></h5>   
+									<h4> >> Tersedia : <?=$row->total?></h4>   
 								</div>
 
 							</div>
@@ -135,27 +116,6 @@ data-target="#exampleModal" data-whatever="@mdo">
 					<?php } ?> 
 				</div>
 
-			</div>
-		</div>
-	</div>
-</div>
-
- <!-- Content Row -->
-<div class="row">
-	<div class="col">
-		<div class="card shadow mb-4">
-			<!-- Card Header - Accordion -->
-			<a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-				role="button" aria-expanded="true" aria-controls="collapseCardExample">
-				<h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
-			</a>
-			<!-- Card Content - Collapse -->
-			<div class="collapse show" id="collapseCardExample">
-				<div class="card-body">
-					This is a collapsable card example using Bootstrap's built in collapse
-					functionality. <strong>Click on the card header</strong> to see the card body
-					collapse and expand!
-				</div>
 			</div>
 		</div>
 	</div>

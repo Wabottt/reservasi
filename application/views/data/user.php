@@ -12,7 +12,6 @@
         <i class="fa fa-undo"></i> Back
     </a>
 </div>
-Page Heading
 
     <a href="<?=base_url('auth/register')?>" class="btn btn-primary btn-sm pull-right mt-2 mb-4">
     <i class="fa fa-user-plus"></i> Register User</a>

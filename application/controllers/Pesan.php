@@ -29,6 +29,7 @@ class Pesan extends CI_Controller {
 		$data=[
 			'title' => 'Pesan Kamar',
             'kamar'=> $this->M_Kamar->Kamar(),
+            'kamar2'=> $this->M_Paket->detail(),
             'paket'=> $this->M_Paket->tampilData(),
             'tamu'=> $this->M_Tamu->tampilData(),
             'sesi' => $this->db->get_where('user', ['id_karyawan' => $this->session->userdata('id_karyawan')] )->row_array()

@@ -1,25 +1,38 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?=base_url()?>assets2/jquery-ui.css">
+    <script src="<?=base_url()?>assets2/moment-with-locales.js"></script>
+    <script src="<?=base_url()?>assets2/jquery-1.8.3.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     <title><?=$title?></title>
 </head>
 <body>
-<div class="mb-3">
-    <a href="<?=base_url('home')?>" class="btn btn-warning btn-sm">
-        <i class="fa fa-undo"></i> Back
-    </a>
-</div>
-    <!-- DataTales Example -->
+
+
+<h2>Data Transaksi</h2><hr>
+    <form method="get" action="">
+        <div class="form-group row" id="form-tanggal">
+            <label class="col-lg-2 col-form-label">Filter Tanggal</label>
+            <div class="col-lg-4">
+            <input type="date" name="tanggal" class="form-control">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-sm">Tampilkan</button>
+    </form>
+<hr />
+
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h5 class="m-0 font-weight-bold text-primary">Daftar Tamu</h5>
-    </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered mt-3" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered mt-3"  width="100%" cellspacing="0">
                 <thead>
                     <tr class="text-center font-weight-bold text-dark ">
                         <th>No</th>
@@ -30,14 +43,13 @@
                         <th>Tanggal Keluar</th>
                         <th>Total Bayar</th>
                         <th>FO</th>
-                        <th>Opsi</th>
                     </tr>
                 </thead>
 
                 <tbody>
                 <?php 
                 $no=1;
-                foreach($tamu as $row) {?>
+                foreach($transaksi as $row) { ?> 
 
                     <tr class="text-center">
                         <td><?=$no++;?>.</td>
@@ -48,19 +60,16 @@
                         <td><?=$row->tgl_keluar; ?></td>
                         <td><?=$row->total; ?></td>
                         <td><?=$row->nama_karyawan; ?></td>
-                        <td>
-                            <a href="<?=base_url('Kamar/hapus/'.$row->id_pesanan)?>" class="">Lihat</a> | 
-                            <a href="<?=base_url('Data_pesanan/chekout/'.$row->id_pesanan . '/'. $row->nomor_kamar)?>" class="btn btn-success btn-sm">Chekout</a> 
-                        </td>
                     </tr>
-
                 <?php } ?>
                 </tbody>
-
             </table>
         </div>
     </div>
 </div>
+
+<a href="<?php echo $url_cetak; ?>" target="blank" class="btn btn-primary shadow-sm">
+<i class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
 
 </body>
 </html>

@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
-    <!-- <script src="<?=base_url()?>assets2/reservasi.js"></script> -->
+    <script src="<?=base_url()?>assets2/reservasi.js"></script>
 
     <title><?=$title?></title>
 </head>
@@ -21,296 +21,327 @@
 
 <script>
 $(document).ready(function() {
-    $('#tgl_masuk, #tgl_keluar, #paket').change(function () {
-        if ( ($("#tgl_masuk").val() != "") && ($("#tgl_keluar").val() != "")) {
-            var oneDay = 24*60*60*1000;
-            var firstDate = new Date($("#tgl_masuk").val());
-            var secondDate = new Date($("#tgl_keluar").val());
-            var diffDays = Math.round(Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay)));
-            $("#selisih").val(diffDays);
-        }
-    });
+    var x = 0;
+    $("#btn-tambah-form").click(function(){   
+        x++;    
+        $("#col1").after(
+            '<div class="col-lg-6" id="col2">'+
+                '<div class="card shadow mb-4">'+
+                    '<h5 class="text-center text-dark font-weight-bold mt-3">Pesan Kamar'+x+'</h5>'+
 
-    $("#paket, #selisih, #tipe").change(function() {
-        var selisih = $("#selisih").val();
-        var paket  = $("#paket").val();
-        var tipe  = $("#tipe").val();
+                    '<hr>'+
+                    '<div class="collapse show" id="collapseCardExample">'+
+                        "<div class='card-body ml-2 mr-2' id='form"+x+"'>"+
+                            '<input type="hidden" class="form-control" name="nama_karyawan[]" value="<?=$sesi['username']?>" readonly>'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label">Nama Tamu</label>'+
+                                '<div class=" col-lg-8">'+
+                                    '<?php foreach ($tamu as $row) { ?>'+
+                                    '<input type="text" name="nama[]" value="<?=$row->nama?>" class="form-control" readonly>'+
+                                    '<input type="hidden" name="nik[]" value="<?=$row->nik?>">'+
+                                    '<input type="hidden" name="alamat[]" value="<?=$row->alamat?>" >'+
+                                    '<input type="hidden" name="telpon[]" value="<?=$row->telpon?>" >'+
+                                    '<?php } ?>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label">Tanggal Masuk</label>'+
+                                '<div class="col-lg-8">'+
+                                '<input type="date" name="tgl_masuk[]" class="form-control" id="tgl_masuk'+x+'">'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label">Tanggal Keluar</label>'+
+                                '<div class=" col-lg-8">'+
+                                '<input type="date" name="tgl_keluar[]" class="form-control" id="tgl_keluar'+x+'">'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label" readonly>Lama Inap</label>'+
+                                '<div class="col-lg-8">'+
+                                '<input type="text" name="lama[]" class="form-control" id="lama_inap'+x+'">'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label">Tipe Kamar</label>'+
+                                '<div class="col-lg-8">'+
+                                    '<select name="tipe[]" id="tipe_kamar'+x+'" class="form-control" required>'+
+                                        '<option value="">- Pilih Tipe Kamar -</option>'+
+                                        '<option value="Standar" data-harga="250000">Standar</option>'+
+                                        '<option value="Superior" data-harga="450000">Superior</option>'+
+                                    '</select>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<input type="hidden" class="form-control" id="harga_kamar'+x+'">'+
+                            '<input type="hidden" name="chekin" value="chekin">'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label">Paket</label>'+
+                                '<div class="col-lg-8">'+
+                                    '<select name="paket[]" id="paket_kamar'+x+'" class="form-control" required>'+
+                                        '<option value="" disabled>- pilih Paket -</option>'+
+                                        '<?php foreach ($paket as $pak) { ?>'+
+                                        '<option data-paket="<?=$pak->harga?>" value="<?=$pak->paket?>"><?=$pak->paket?></option>'+
+                                        '<?php } ?>'+
+                                    '</select>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<input type="hidden" class="form-control" id="harga_paket'+x+'">'+
+
+                            '<div class="form-group row">'+
+                                '<label class="col-lg-4 col-form-label">Pilih Kamar</label>'+
+                                '<div class="col-lg-8">'+
+                                    '<select name="nomor_kamar[]" class="form-control">'+
+                                        '<option value="">- Pilih Nomor Kamar -</option>'+
+                                        '<?php foreach ($kamar as $key) { ?>'+
+                                        '<option value="<?=$key->nomor_kamar?>"><?=$key->nomor_kamar?></option>'+
+                                        '<?php } ?>'+
+                                    '</select>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<br>'+
+                            '<div class="form-group">'+
+                                '<div>'+
+                                '<textarea name="request[]" class="form-control" placeholder="Request Tamu"></textarea>'+
+                                '</div>'+
+                            '</div>'+
+
+                            '<div>'+
+                                '<h5  class="">Total : Rp.<input class="text-danger" name="total[]" style="border: none;" id="total_harga'+x+'" readonly></h5>'+
+                            '</div>'+
+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'
+        );
+
+            $("#form1").change(function () {
+                if ( ($("#tgl_masuk1").val() != "") && ($("#tgl_keluar1").val() != "")) {
+                var oneDay = 24*60*60*1000;
+                var firstDate = new Date($("#tgl_masuk1").val());
+                var secondDate = new Date($("#tgl_keluar1").val());
+                var diffDays = Math.round(Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay)));
+                
+                $("#lama_inap1").val(diffDays);
+                //batas
+                var tipe_kamar = $('#tipe_kamar1 option:selected').data('harga');
+                var tipe_paket = $('#paket_kamar1 option:selected').data('paket');
+
+                $("#harga_kamar1").val(tipe_kamar);
+                $("#harga_paket1").val(tipe_paket);
+
+                //batas
+                var harga_paket  = $("#harga_paket1").val();
+                var harga_kamar  = $("#harga_kamar1").val();
+                var lama_inap = $("#lama_inap1").val();
+                
+
+                //batas          
+                var sub_total = parseInt(harga_kamar) + parseInt(harga_paket);
+                var total_fix = parseInt(lama_inap) * parseInt(sub_total);
+
+                $("#total_harga1").val(total_fix); 
+                } 
+            });
+
+            $("#form2").change(function () {
+                if ( ($("#tgl_masuk2").val() != "") && ($("#tgl_keluar2").val() != "")) {
+                var oneDay = 24*60*60*1000;
+                var firstDate = new Date($("#tgl_masuk2").val());
+                var secondDate = new Date($("#tgl_keluar2").val());
+                var diffDays = Math.round(Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay)));
+                
+                $("#lama_inap2").val(diffDays);
+                //batas
+                var tipe_kamar = $('#tipe_kamar2 option:selected').data('harga');
+                var tipe_paket = $('#paket_kamar2 option:selected').data('paket');
+
+                $("#harga_kamar2").val(tipe_kamar);
+                $("#harga_paket2").val(tipe_paket);
+
+                //batas
+                var harga_paket  = $("#harga_paket2").val();
+                var harga_kamar  = $("#harga_kamar2").val();
+                var lama_inap = $("#lama_inap2").val();
+                
+
+                //batas          
+                var sub_total = parseInt(harga_kamar) + parseInt(harga_paket);
+                var total_fix = parseInt(lama_inap) * parseInt(sub_total);
+
+                $("#total_harga2").val(total_fix); 
+                } 
+            });
+
+            $("#form3").change(function () {
+                if ( ($("#tgl_masuk3").val() != "") && ($("#tgl_keluar3").val() != "")) {
+                var oneDay = 24*60*60*1000;
+                var firstDate = new Date($("#tgl_masuk3").val());
+                var secondDate = new Date($("#tgl_keluar3").val());
+                var diffDays = Math.round(Math.round((secondDate.getTime() - firstDate.getTime()) / (oneDay)));
+                
+                $("#lama_inap3").val(diffDays);
+                //batas
+                var tipe_kamar = $('#tipe_kamar3 option:selected').data('harga');
+                var tipe_paket = $('#paket_kamar3 option:selected').data('paket');
+
+                $("#harga_kamar3").val(tipe_kamar);
+                $("#harga_paket3").val(tipe_paket);
+
+                //batas
+                var harga_paket  = $("#harga_paket3").val();
+                var harga_kamar  = $("#harga_kamar3").val();
+                var lama_inap = $("#lama_inap3").val();
+                
+
+                //batas          
+                var sub_total = parseInt(harga_kamar) + parseInt(harga_paket);
+                var total_fix = parseInt(lama_inap) * parseInt(sub_total);
+
+                $("#total_harga3").val(total_fix); 
+                } 
+            });
+
+        });
         
-        var hasil = parseInt(tipe) + parseInt(paket);
-        var total = parseInt(selisih) *  parseInt(hasil);
-        $("#total").val(total);
-    });
 
-    $("#btn-tambah-form").click(function(){
-        
-      $("#insert-form").append(
-		"<div class='card shadow mb-4'>" +
-            "<h5 class='text-center text-dark font-weight-bold mt-3 mb-2'>Pesan Kamar</h5>" +
-			"<div class='collapse show' id='collapseCardExample'>" +
-				"<div class='card-body'>" +
-
-                "<div class='row mb-3'>" +
-                    "<label class='col-lg-4 col-form-label'>Nama_karyawan</label>" +
-                    "<div class='col-lg-8'>" +
-                    "<input type='text' class='form-control' name='nama_karyawan[]' value='<?=$sesi['username']?>' readonly>" +
-                    "</div>" +
-                "</div>" +
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Nama Tamu</label>" +
-                    "<div class='col-lg-8'>" +
-                    "<?php foreach ($tamu as $row) { ?> "+
-                        "<input type='text' name='nama[]' value='<?=$row->nama?>' class='form-control' readonly>" +
-                        "<input type='hidden' name='nik[]' value='<?=$row->nik?>'>"+
-                        "<input type='hidden' name='alamat[]' value='<?=$row->alamat?>' >"+
-                        "<input type='hidden' name='telpon[]' value='<?=$row->telpon?>'' >"+
-                    "<?php } ?>"+
-                    "</div>"+
-                "</div>"+
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Tanggal Masuk</label>"+
-                    "<div class='col-lg-8'>"+
-                    "<input type='date' name='tgl_masuk[]' class='form-control' id='tgl1'>"+ 
-                    "</div>"+
-                "</div>"+
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Tanggal Keluar</label>"+
-                    "<div class='col-lg-8'>"+
-                    "<input type='date' name='tgl_keluar[]' class='form-control' id='tgl2'>"+
-                    "</div>"+
-                "</div>"+
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Lama Inap</label>"+
-                    "<div class='col-lg-8'>"+
-                    "<input type='text' name='lama[]' class='form-control' id='selisih'>"+
-                    "</div>"+
-                "</div>"+
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Tipe Kamar</label>"+
-                    "<div class='col-lg-8'>"+
-                        "<select name='tipe[]' id='tipe' class='form-control'>"+
-                            "<option value='' disabled>- Pilih Tipe Kamar -</option>"+
-                            
-                            "<?php foreach ($kamar as $key) { ?>"+
-                            "<option value='<?=$key->harga?>'><?=$key->tipe?></option>"+
-                            "<?php } ?>"+
-                        "</select>"+
-                    "</div>"+
-                "</div>"+ 
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Pilih Kamar</label>"+
-                    "<div class='col-lg-8'>"+
-                        "<select name='nomor_kamar[]' class='form-control'>"+
-                            "<option value='' disabled>- Nomor Kamar -</option>"+
-                            
-                            "<?php foreach ($kamar as $key) { ?>"+
-                            "<option value='<?=$key->nomor_kamar?>'><?=$key->nomor_kamar?></option>"+
-                            "<?php } ?>"+
-                        "</select>"+
-                    "</div>"+
-                "</div>"+ 
-
-                '<input type="hidden" name="chekout" value="chekout">'+
-
-                "<div class='row mb-3'>"+
-                    "<label class='col-lg-4 col-form-label'>Paket</label>"+
-                    "<div class='col-lg-8'>"+
-                        "<select name='paket[]' id='paket' class='form-control'>"+
-                            "<option value='' disabled>- pilih Paket -</option>"+
-                            
-                            "<?php foreach ($paket as $pak) { ?>"+
-                            "<option value='<?=$pak->harga?>'><?=$pak->paket?></option>"+
-                            "<?php } ?>"+
-                        "</select>"+
-                    "</div>"+
-                "</div>"+
-
-                "<div class='form-group'>"+
-                    "<label class='control-label col-xs-3'>Request Tamu</label>"+
-                    "<div class='col-xs-8'>"+
-                    "<textarea name='request[]' class='form-control'></textarea>"+
-                    "</div>"+
-                "</div>"+
-
-                "<div class='form-group'>"+
-                    "<label >Total Harga</label>"+
-                    "<input name='total[]' class='form-control' id='total'>"+
-                "</div>"+
-
-				"</div>"+
-			"</div>"+
-		"</div>");
-      
-    });
-    
     $("#btn-reset-form").click(function(){
-      $("#insert-form").html(""); 
+        $("#col2").last().remove(""); 
     });
 });
-
 </script>
 
-    <!-- Content Row -->
+<?= form_open('pesan/pesanKamar');?>
+<!-- Content Row -->
+<div class="row">
 
- <?= form_open('pesan/pesanKamar');?>
- <button type="button" class="btn btn-success" id="btn-tambah-form">Tambah Pesanan</button>
- <button type="button" class="btn btn-secondary" id="btn-reset-form">Reset Form</button><br><br>
- 
- <div class="row">
-	<div class="col-lg-8">
+    <div class="col-lg-6" id="col1">
+        <div class="card shadow mb-4">
+        <h5 class="text-center text-dark font-weight-bold mt-3">Pesan Kamar</h5>
+        <hr>
+            <div class="collapse show" id="collapseCardExample">
+                <div class="card-body ml-2 mr-2" id="form">
 
-		<div class="card shadow mb-4">
-            <h5 class="text-center text-dark font-weight-bold mt-3">Pesan Kamar</h5>
-            <hr>
-			<div class="collapse show" id="collapseCardExample">
-				<div class="card-body ml-2 mr-2">
-                
-                <!-- <div class="row">
-                    <div class="col-lg-5"> -->
+                    <input type="hidden" class="form-control" name="nama_karyawan[]" value="<?=$sesi['username']?>" readonly>
 
-                        <input type="hidden" class="form-control" name="nama_karyawan[]" value="<?=$sesi['username']?>" readonly>
-
-                        <div class="row mb-3">
-                            <label class="col-lg-4 col-form-label">Nama Tamu</label>
-                            <div class="col-lg-8">
-                            <?php foreach ($tamu as $row) { ?>
-                                <input type="text" name="nama[]" value="<?=$row->nama?>" class="form-control" readonly>
-                                <input type="hidden" name="nik[]" value="<?=$row->nik?>" >
-                                <input type="hidden" name="alamat[]" value="<?=$row->alamat?>" >
-                                <input type="hidden" name="telpon[]" value="<?=$row->telpon?>" >
-                            <?php } ?>
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label">Nama Tamu</label>
+                        <div class=" col-lg-8">
+                        <?php foreach ($tamu as $row) { ?>
+                            <input type="text" name="nama[]" value="<?=$row->nama?>" class="form-control" readonly>
+                            <input type="hidden" name="nik[]" value="<?=$row->nik?>" >
+                            <input type="hidden" name="alamat[]" value="<?=$row->alamat?>" >
+                            <input type="hidden" name="telpon[]" value="<?=$row->telpon?>" >
+                        <?php } ?>
                         </div>
+                    </div>
 
-                        <div class="row mb-3">
-                            <label class="col-lg-4 col-form-label">Tanggal Masuk</label>
-                            <div class="col-lg-8">
-                            <input type="date" name="tgl_masuk[]" class="form-control" id="tgl_masuk"> 
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label">Tanggal Masuk</label>
+                        <div class="col-lg-8">
+                        <input type="date" name="tgl_masuk[]" class="form-control" id="tgl_masuk">
                         </div>
+                    </div>
 
-                        <div class="row mb-3">
-                            <label class="col-lg-4 col-form-label">Tanggal Keluar</label>
-                            <div class="col-lg-8">
-                            <input type="date" name="tgl_keluar[]" class="form-control" id="tgl_keluar">
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label">Tanggal Keluar</label>
+                        <div class=" col-lg-8">
+                        <input type="date" name="tgl_keluar[]" class="form-control" id="tgl_keluar">
                         </div>
+                    </div>
 
-                        <div class="row mb-3">
-                            <label class="col-lg-4 col-form-label">Lama Inap</label>
-                            <div class="col-lg-8">
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label" readonly>Lama Inap</label>
+                        <div class="col-lg-8">
                             <input type="text" name="lama[]" class="form-control" id="selisih">
-                            </div>
-                        </div>
-
-                    <!-- </div> -->
-
-                <!-- <div class="col-lg-1"></div> -->
-
-                    <!-- <div class="col-lg-6 justify-content-lg-center"> -->
-                        <div class="row mb-3">
-                            <label class="col-sm-4  col-form-label">Tipe Kamar</label>
-                            <div class="col-lg-4">
-                                <select name="tipe[]"  class="form-control">
-                                    <option value="">- Pilih Tipe Kamar -</option>
-                                    <option value="Standar">Standar</option>
-                                    <option value="Superior">Superior</option>
-                                </select>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <select id="tipe" class="form-control">
-                                    <option value="" disabled>- Pilih Tipe Kamar -</option>
-                                    
-                                    <?php foreach ($kamar as $key) { ?>
-                                    <option value="<?=$key->harga?>"><?=$key->harga?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
                         </div>  
+                    </div>
 
-                        <div class="row mb-3">
-                            <label class="col-lg-4 col-form-label">Pilih Kamar</label>
-                            <div class="col-lg-8">
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label">Tipe Kamar</label>
+                        <div class="col-lg-8">
+                            <select name="tipe[]" id="tipe_kamar" class="form-control" required>
+                                <option value="">- Pilih Tipe Kamar -</option>
+                                <option value="Standar" data-harga="250000">Standar</option>
+                                <option value="Superior" data-harga="450000">Superior</option>
+                            </select>
+                        </div>
+                    </div> 
+                    
+                    <input type="hidden" class="form-control" id="harga_kamar">
+                    <input type="hidden" name="chekin" value="chekin">
+
+                    <div class="form-group row">
+                        <label class="col-lg-4 col-form-label">Paket</label>
+                        <div class="col-lg-8">
+                            <select name="paket[]" id="paket" class="form-control" required>
+                                <option value="" disabled>- pilih Paket -</option>
+                                <?php foreach ($paket as $pak) { ?>
+                                <option data-paket="<?=$pak->harga?>" value="<?=$pak->paket?>"><?=$pak->paket?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" id="harga_paket">
+
+                    <div class="form-group row">
+                    <label class="col-lg-4 col-form-label">Pilih Kamar</label>
+                        <div class="col-lg-8">
                             <select name="nomor_kamar[]" class="form-control">
-                                <option value="" disabled>- Nomor Kamar -</option>
+                                <option value="">- Pilih Nomor Kamar -</option>
                                 <?php foreach ($kamar as $key) { ?>
                                 <option value="<?=$key->nomor_kamar?>"><?=$key->nomor_kamar?></option>
                                 <?php } ?>
                             </select>
-                            </div>
                         </div>
-
-                        <input type="hidden" name="chekin" value="chekin">
-
-                        <div class="row mb-3">
-                            <label class="col-lg-4 col-form-label">Paket</label>
-                            <div class="col-lg-4">
-                            <select name="paket[]" class="form-control" required>
-                                <option value="" disabled>- pilih Paket -</option>
-                                <?php foreach ($paket as $pak) { ?>
-                                <option value="<?=$pak->paket?>"><?=$pak->paket?></option>
-                                <?php } ?>
-                            </select>
-                            </div>
-
-                            <div class="col-lg-4">
-                            <select id="paket" class="form-control" required>
-                                <option value="" disabled>- pilih Paket -</option>
-                                <?php foreach ($paket as $pak) { ?>
-                                <option value="<?=$pak->harga?>"><?=$pak->harga?></option>
-                                <?php } ?>
-                            </select>
-                            </div>
-
-                        </div>
-                    <!-- </div> -->
-                <!-- </div> -->
-
-                <div class="form-group">
-                    <label class="control-label col-xs-3">Request Tamu</label>
-                    <div class="col-xs-8">
-                    <textarea name="request[]" class="form-control"></textarea>
                     </div>
+                    <br>
+
+                    <div class="form-group">
+                        <div>
+                        <textarea name="request[]" class="form-control" placeholder="Request Tamu"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5  class="">Total : Rp.<input class="text-danger" name="total[]" style="border: none;" id="total" readonly></h5>
+
+                    </div>
+
                 </div>
-
-                <div class="form-group">
-                    <label >Total Harga</label>
-                    <input name="total[]" class="form-control" id="total">
-                </div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-        <div class="col-lg-6" id="insert-form">
-
+            </div>
         </div>
+    </div>
 
-        <hr>
-        <div class="form-group">
-        <button type="submit" class="btn btn-outline-primary">
-        <i class="fa fa-paper-plane"></i> Pesan
-        </button>
+    <hr>
+    <div class="form-group mt-1">
+    <button type="submit" class="btn btn-outline-primary">
+    <i class="fa fa-paper-plane"></i> Pesan
+    </button>
 
-        <button type="Reset" class="btn btn-outline-secondary">
-        Reset
-        </button>
-        </div>
+    <button type="Reset" class="btn btn-outline-secondary">
+    Kosongkan
+    </button>
 
-    </form>    
-    
-    <input type="hidden" id="jumlah-form" value="1">
+    <div style="float: right">
+    <button type="button" class="btn btn-success" id="btn-tambah-form"><i class="fa fa-plus"></i>  Tambah Pesanan</button>
+    <button type="button" class="btn btn-secondary" id="btn-reset-form"><i class="fa fa-undo"></i></button>
+    </div>
+
+    </div> 
 
 </div>
 
-
+</form>   
 
 </body>
 </html>

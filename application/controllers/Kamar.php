@@ -132,7 +132,7 @@ class Kamar extends CI_Controller {
         ];
 
         $this->db->update('kamar', $data, $where);
-        redirect('home');
+        redirect('Kamar/Status3');
 
 	}
 

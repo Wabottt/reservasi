@@ -9,7 +9,7 @@ class M_Pesan extends CI_Model {
         $this->db->from('data_pesanan');
         $query=$this->db->get();
         return $query->result();
-    }
+    } 
 
     public function chekout($chekout)
     {
